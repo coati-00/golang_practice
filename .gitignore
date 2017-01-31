@@ -26,3 +26,9 @@ _testmain.go
 
 .idea/
 .project
+
+
+
+.DS_Store
+bin/
+go_blueprints_book_webchat/.DS_Store
