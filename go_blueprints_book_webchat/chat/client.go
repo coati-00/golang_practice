@@ -1,6 +1,6 @@
 package main
 
-import(
+import (
 	"github.com/gorilla/websocket"
 )
 
@@ -17,7 +17,7 @@ type client struct {
 func (c *client) read() {
 	defer c.socket.Close()
 	for {
-		_, msg, err :=c.socket.ReadMessage()
+		_, msg, err := c.socket.ReadMessage()
 		if err != nil {
 			return
 		}

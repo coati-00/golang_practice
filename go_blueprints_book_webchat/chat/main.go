@@ -1,30 +1,27 @@
 package main
 
-import(
+import (
+	"html/template"
 	"log"
 	"net/http"
-	"sync"
-	"html/template"
 	"path/filepath"
+	"sync"
 )
-
-
 
 //templ represents single tempalte
 type templateHandler struct {
-	once		sync.Once
-	filename	string
-	templ		*template.Template
+	once     sync.Once
+	filename string
+	templ    *template.Template
 }
 
 //ServerHTTP handles HTTP request.
-func (t *templateHandler) ServeHTTP (w http.ResponseWriter, r *http.Request) {
-	t.once.Do(func(){
+func (t *templateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	t.once.Do(func() {
 		t.templ = template.Must(template.ParseFiles(filepath.Join("templates", t.filename)))
 	})
 	t.templ.Execute(w, nil)
 }
-
 
 func main() {
 	//root
